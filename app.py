@@ -1,7 +1,19 @@
+#app.py
 
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
+import os
+
+st.title("CORD-19 Data Explorer")
+
+file_path = "data/metadata_sample.csv"
+
+if not os.path.exists(file_path):
+    st.error("⚠️ Dataset file not found! Please make sure `metadata_sample.csv` is uploaded in the `data/` folder of your GitHub repo.")
+else:
+    df = pd.read_csv(file_path)
+    st.write("Sample of the dataset:", df.head())
+
 
 # Load dataset
 df = pd.read_csv("data/metadata_sample.csv")
